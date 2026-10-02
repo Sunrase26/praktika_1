@@ -1,0 +1,98 @@
+# ====================1 задачка====================
+print("=" * 10 + "1 задачка" + "=" * 10)
+c = 30
+f = (c * 9 / 5) + 32
+k = c + 273.15
+print(f"{c}°C = {f:.2f}°F")
+print(f"{c}°C = {k:.2f}K")
+
+
+# ====================2 задачка====================
+print("=" * 10 + "2 задачка" + "=" * 10)
+
+
+def check_number(n):
+    if n % 2 == 0:
+        print(f"{n} - Чётное")
+    else:
+        print(f"{n} - Нечётное")
+
+    if n > 0:
+        print(f"{n} - Положительное")
+    elif n < 0:
+        print(f"{n} - Отрицательное")
+    else:
+        print(f"{n} - Ноль")
+
+    if 10 <= n <= 50:
+        print(f"{n} - Принадлежит диапазону [10; 50]")
+    else:
+        print(f"{n} - Не принадлежит диапазону [10; 50]")
+
+
+check_number(int(input("Введи число: ")))
+
+
+# ====================3 задачка====================
+print("=" * 10 + "3 задачка" + "=" * 10)
+import random
+import string
+
+
+def generate_password():
+    bukovki = [random.choice(string.ascii_uppercase) for _ in range(3)]
+    ciferki = [random.choice(string.digits) for _ in range(3)]
+    specials = [random.choice("!@#$%^*") for _ in range(2)]
+    list_password = bukovki + ciferki + specials
+    random.shuffle(list_password)
+    password = "".join(list_password)
+    return password
+
+
+print("рандомный пароль: ", generate_password())
+
+# ====================4 задачка====================
+print("=" * 10 + "4 задачка" + "=" * 10)
+text = input("Введи текст: ").lower()
+counts = {}
+for char in text:
+    counts[char] = text.count(char)
+top3 = sorted(counts.items(), key=lambda x: x[1], reverse=True)[:3]
+print("3 самых частых символа:")
+for char, count in top3:
+    print(f"Символ '{char}' встречается {count} раз(а)")
+
+
+# ====================5 задачка====================
+print("=" * 10 + "5 задачка" + "=" * 10)
+
+n = int(input("Введи число N: "))
+primes = set(range(2, n + 1))
+p = 2
+while p * p <= n:
+    if p in primes:
+        for i in range(p * p, n + 1, p):
+            primes.discard(i)
+    p += 1
+result = sorted(list(primes))
+print(f"Простые числа от 2 до {n}:")
+print(result)
+
+# ====================6 задачка====================
+print("=" * 10 + "6 задачка" + "=" * 10)
+N = int(input("Введите индекс: "))
+N_copy = N
+n = 1
+while N - 9 * n * 10 ** (n - 1) > 0:
+    N -= 9 * n * 10 ** (n - 1)
+    n += 1
+
+kolvo_skip = (
+    N - 1
+) // n  # столько чисел мы скипнули в блоке из n-значных чисел до нашего числа
+samo_chislo = 10 ** (n - 1) + kolvo_skip  # само число, в котором находится N-ый символ
+index_in_chislo = (N - 1) % n  # индекс в числе, которое мы нашли
+
+print(f"Символ на позиции {N_copy}: {str(samo_chislo)[index_in_chislo]}")
+
+# у меня мозг взорвался, когда я это делал, но вроде работаеет  :)
